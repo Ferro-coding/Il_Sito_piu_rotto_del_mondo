@@ -1,0 +1,1472 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ - Il Sito Più Rotto Del Mondo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Comic Sans MS", cursive;
+            background: repeating-radial-gradient(ellipse at center, #ff0000, #ff7700, #ffff00, #00ff00, #0000ff, #ff00ff);
+            background-size: 400% 400%;
+            animation: psychedelic 15s ease infinite;
+            cursor: none;
+            overflow-x: hidden;
+            filter: saturate(200%);
+        }
+        
+        @keyframes psychedelic {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+        
+        * {
+            transition: all 0.5s ease;
+        }
+        
+        h1 {
+            font-size: 5rem;
+            color: cyan;
+            text-shadow: 3px 3px 0 magenta, -3px -3px 0 yellow, 5px -5px 0 orange;
+            transform: rotate(-3deg);
+            animation: tilt 5s infinite alternate;
+            letter-spacing: -5px;
+            white-space: nowrap;
+            overflow: hidden;
+            width: 100%;
+        }
+        
+        @keyframes tilt {
+            0% { transform: rotate(-3deg) skew(0deg); }
+            25% { transform: rotate(5deg) skew(5deg); }
+            50% { transform: rotate(-1deg) skew(-5deg); }
+            75% { transform: rotate(3deg) skew(10deg); }
+            100% { transform: rotate(-5deg) skew(-10deg); }
+        }
+        
+        .custom-cursor {
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            background-image: url('/api/placeholder/180/180');
+            background-size: contain;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transform: scale(0.8) rotate(45deg);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 15px groove #ff00ff;
+            transform: skew(-3deg, 2deg);
+            position: relative;
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5), -10px -10px 20px rgba(255, 255, 255, 0.5);
+            animation: pulsar 10s infinite;
+        }
+        
+        @keyframes pulsar {
+            0%, 100% { transform: skew(-3deg, 2deg) scale(1); }
+            50% { transform: skew(3deg, -2deg) scale(1.02); }
+        }
+        
+        .popup {
+            position: fixed;
+            padding: 20px;
+            background-color: #ffcc00;
+            border: 5px dashed #ff00ff;
+            color: black;
+            z-index: 100;
+            box-shadow: 0 0 20px blue;
+            animation: float 8s infinite;
+            min-width: 200px;
+            max-width: 300px;
+            transform: rotate(3deg);
+            font-weight: bold;
+        }
+        
+        @keyframes float {
+            0% { top: 150px; left: 50px; transform: rotate(3deg); }
+            25% { top: 100px; left: calc(100% - 350px); transform: rotate(-3deg); }
+            50% { top: calc(100% - 250px); left: calc(100% - 320px); transform: rotate(5deg); }
+            75% { top: calc(100% - 200px); left: 80px; transform: rotate(-1deg); }
+            100% { top: 150px; left: 50px; transform: rotate(3deg); }
+        }
+        
+        .escape-button {
+            position: absolute;
+            padding: 10px;
+            background-color: #00ff00;
+            color: black;
+            border: 3px solid black;
+            cursor: pointer;
+            font-weight: bold;
+            border-radius: 50%;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 15px;
+            background-color: #ccffff;
+            color: #0000ff;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+            transform: rotate(var(--rotate-degree, 0deg));
+        }
+        
+        .nav-link:hover {
+            transform: scale(2) rotate(360deg);
+            z-index: 50;
+        }
+        
+        .nav-link::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8), transparent);
+            animation: shine 2s infinite;
+        }
+        
+        @keyframes shine {
+            0% { left: -100%; }
+            50%, 100% { left: 100%; }
+        }
+        
+        #main-content {
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .faq-item {
+            margin: 30px 0;
+            padding: 20px;
+            background-color: rgba(255, 255, 0, 0.3);
+            border: 4px dotted blue;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.5s ease;
+            transform: rotate(var(--rotate-degree));
+        }
+        
+        .faq-item:hover {
+            transform: scale(1.05) rotate(var(--rotate-degree));
+            box-shadow: 0 0 20px rgba(255, 0, 255, 0.5);
+        }
+        
+        .faq-question {
+            font-weight: bold;
+            font-size: 1.3em;
+            color: #9900cc;
+            cursor: pointer;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 10px;
+            position: relative;
+            transition: all 0.3s;
+        }
+        
+        .faq-question::after {
+            content: "▼";
+            position: absolute;
+            right: 10px;
+            transition: transform 0.3s;
+        }
+        
+        .faq-question.active::after {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            padding: 15px;
+            background-color: rgba(255, 255, 255, 0.7);
+            margin-top: 10px;
+            display: none;
+            border-left: 5px solid #ff00ff;
+            font-size: 1.1em;
+            transition: all 0.5s;
+            overflow: hidden;
+        }
+        
+        .glitch-text {
+            position: relative;
+            animation: glitch 3s infinite;
+            display: inline-block;
+        }
+        
+        @keyframes glitch {
+            0% { transform: none; opacity: 1; }
+            7% { transform: skew(-0.5deg, -0.9deg); opacity: 1; }
+            10% { transform: none; opacity: 1; }
+            27% { transform: none; opacity: 1; }
+            30% { transform: skew(0.8deg, -0.1deg); opacity: 1; }
+            35% { transform: none; opacity: 1; }
+            52% { transform: none; opacity: 1; }
+            55% { transform: skew(-1deg, 0.2deg); opacity: 0.8; }
+            50% { transform: none; opacity: 1; }
+            72% { transform: none; opacity: 1; }
+            75% { transform: skew(0.4deg, 1deg); opacity: 0.9; }
+            80% { transform: none; opacity: 1; }
+            100% { transform: none; opacity: 1; }
+        }
+        
+        .search-container {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(200, 200, 255, 0.7);
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .search-input {
+            width: 80%;
+            padding: 10px;
+            font-family: "Comic Sans MS", cursive;
+            border: 3px dashed purple;
+            border-radius: 5px;
+            font-size: 1.1em;
+        }
+        
+        .search-button {
+            padding: 10px 15px;
+            background-color: #ff3300;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-left: 10px;
+            font-family: "Comic Sans MS", cursive;
+        }
+        
+        .search-button:hover {
+            transform: scale(1.1) rotate(10deg);
+        }
+        
+        .categories {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+            justify-content: center;
+        }
+        
+        .category-btn {
+            padding: 8px 15px;
+            background-color: pink;
+            border: 2px solid purple;
+            border-radius: 20px;
+            cursor: pointer;
+            font-family: "Comic Sans MS", cursive;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .category-btn:hover {
+            transform: scale(1.1) rotate(10deg);
+            background-color: yellow;
+        }
+        
+        .popular-questions {
+            margin: 30px 0;
+            padding: 15px;
+            background-color: rgba(255, 200, 200, 0.7);
+            border: 3px solid crimson;
+            border-radius: 10px;
+        }
+        
+        .popular-question-link {
+            display: block;
+            margin: 10px 0;
+            padding: 8px;
+            background-color: rgba(255, 255, 255, 0.6);
+            color: #9900cc;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+        
+        .popular-question-link:hover {
+            transform: translateX(20px) rotate(2deg);
+            background-color: #ffff99;
+        }
+        
+        .faq-tag {
+            display: inline-block;
+            padding: 3px 8px;
+            background-color: #66ccff;
+            color: black;
+            border-radius: 10px;
+            font-size: 0.8em;
+            margin-right: 5px;
+            margin-top: 5px;
+        }
+        
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            transform: rotate(1deg);
+            position: relative;
+        }
+        
+        .cookie-banner {
+            position: fixed;
+            bottom: 40px;
+            left: 20px;
+            right: 20px;
+            background-color: yellow;
+            padding: 15px;
+            text-align: center;
+            z-index: 1000;
+            border: 4px dashed red;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .feedback-container {
+            margin: 30px 0;
+            padding: 15px;
+            background-color: rgba(200, 255, 200, 0.7);
+            border: 3px solid green;
+            border-radius: 10px;
+            text-align: center;
+        }
+        
+        .feedback-button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #33cc33;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: "Comic Sans MS", cursive;
+            transition: all 0.3s;
+        }
+        
+        .feedback-button.negative {
+            background-color: #ff3333;
+        }
+        
+        .feedback-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .hidden-popup {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 9000;
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .popup-content {
+            max-width: 80%;
+            max-height: 80%;
+            background-color: white;
+            padding: 20px;
+            position: relative;
+            overflow: auto;
+            border-radius: 10px;
+            border: 5px solid #ff00ff;
+        }
+        
+        .close-popup {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        .blinking-text {
+            animation: blink 1s infinite;
+        }
+        
+        @keyframes blink {
+            0%, 49% { opacity: 1; }
+            50%, 100% { opacity: 0; }
+        }
+        
+        .rotating-text {
+            display: inline-block;
+            animation: rotate 3s linear infinite;
+        }
+        
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .moving-text {
+            display: inline-block;
+            animation: moveAround 5s infinite alternate;
+        }
+        
+        @keyframes moveAround {
+            0% { transform: translate(0, 0); }
+            25% { transform: translate(10px, -5px); }
+            50% { transform: translate(-5px, 10px); }
+            75% { transform: translate(-10px, -10px); }
+            100% { transform: translate(5px, 5px); }
+        }
+        
+        #faq-loading {
+            text-align: center;
+            padding: 20px;
+            font-size: 1.5em;
+            display: none;
+        }
+        
+        .dance-animation {
+            display: inline-block;
+            animation: dance 0.5s infinite;
+        }
+        
+        @keyframes dance {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .upside-down {
+            transform: rotate(180deg);
+            display: inline-block;
+        }
+        
+        #chat-popup {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #ff3300;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 900;
+        }
+        
+        #chat-container {
+            position: fixed;
+            bottom: 90px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background-color: white;
+            border: 3px solid #ff3300;
+            border-radius: 10px;
+            display: none;
+            flex-direction: column;
+            z-index: 900;
+            overflow: hidden;
+        }
+        
+        #chat-header {
+            background-color: #ff3300;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        #chat-close {
+            cursor: pointer;
+        }
+        
+        #chat-messages {
+            flex-grow: 1;
+            padding: 10px;
+            overflow-y: auto;
+            background-color: #f9f9f9;
+        }
+        
+        #chat-input-container {
+            padding: 10px;
+            border-top: 1px solid #ddd;
+            display: flex;
+        }
+        
+        #chat-input {
+            flex-grow: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: "Comic Sans MS", cursive;
+        }
+        
+        #chat-send {
+            padding: 8px 12px;
+            background-color: #ff3300;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-cursor"></div>
+    
+    <div class="popup" id="popup1" style="top: 120px; left: 80px;">
+        AVVISO: Le risposte potrebbero cambiare casualmente durante la lettura! Non è un bug, è una feature.
+        <button class="escape-button" style="top: -10px; right: -10px;" onclick="moveButton(this)">X</button>
+    </div>
+    
+    <div class="popup" id="popup2" style="bottom: 150px; right: 120px;">
+        DOMANDA SEGRETA: Come si usa un sito che non funziona? Risposta: Non si usa!
+        <button class="escape-button" style="bottom: -10px; left: -10px;" onclick="moveButton(this)">X</button>
+    </div>
+    
+    <div class="cookie-banner" id="cookie-banner">
+        🍪 Questa pagina di FAQ ha generato 87.654 cookie di tracciamento! Non abbiamo idea di cosa traccino!
+        <button onclick="acceptCookies()">Accetto Tutto</button>
+        <button onclick="moveButton(this)">Leggi l'Informativa</button>
+    </div>
+    
+    <div class="hidden-popup" id="feedback-popup">
+        <div class="popup-content">
+            <span class="close-popup" onclick="closePopup('feedback-popup')">×</span>
+            <h2>Grazie per il tuo feedback!</h2>
+            <p>Abbiamo registrato la tua opinione e promettiamo solennemente di <span class="blinking-text">ignorarla completamente</span>.</p>
+            <p>Il tuo feedback è importante per noi, ecco perché lo cancelleremo immediatamente.</p>
+            <button onclick="closePopup('feedback-popup')" style="padding: 10px 20px; background-color: #ff3300; color: white; border: none; border-radius: 5px; cursor: pointer;">VA BENE</button>
+        </div>
+    </div>
+    
+    <div class="hidden-popup" id="search-popup">
+        <div class="popup-content">
+            <span class="close-popup" onclick="closePopup('search-popup')">×</span>
+            <h2>Risultati della Ricerca</h2>
+            <p>La tua ricerca ha prodotto i seguenti risultati:</p>
+            <ul id="search-results">
+                <li>Nessun risultato trovato.</li>
+                <li>Prova a cercare qualcosa che non esiste!</li>
+                <li>O ancora meglio, prova a non cercare affatto!</li>
+            </ul>
+            <div style="text-align: center; margin-top: 20px;">
+                <span class="rotating-text" style="font-size: 2em;">🔍</span>
+            </div>
+            <button onclick="closePopup('search-popup')" style="padding: 10px 20px; background-color: #ff3300; color: white; border: none; border-radius: 5px; cursor: pointer;">CHIUDI</button>
+        </div>
+    </div>
+    
+    <div id="chat-popup" onclick="toggleChat()">
+        💬
+    </div>
+    
+    <div id="chat-container">
+        <div id="chat-header">
+            <span>Assistenza Rotta</span>
+            <span id="chat-close" onclick="toggleChat()">✖</span>
+        </div>
+        <div id="chat-messages">
+            <div style="background-color: #ffe6e6; padding: 10px; border-radius: 10px; margin-bottom: 10px;">
+                Ciao! Sono l'assistente virtuale più inutile del web! Come posso confonderti oggi?
+            </div>
+        </div>
+        <div id="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Scrivi qui...">
+            <button id="chat-send" onclick="sendChatMessage()">Invia</button>
+        </div>
+    </div>
+    
+    <div class="container">
+        <h1><span class="glitch-text">F</span>A<span class="glitch-text">Q</span></h1>
+        
+        <nav>
+            <a href="index.html" class="nav-link" onmouseover="randomizePosition(this)" style="--rotate-degree: -2deg;">Home</a>
+            <a href="chi_siamo.html" class="nav-link" onmouseover="randomizePosition(this)" style="--rotate-degree: 3deg;">Chi Siamo</a>
+            <a href="servizi.html" class="nav-link" onmouseover="randomizePosition(this)" style="--rotate-degree: -1deg;">Servizi</a>
+            <a href="contatti.html" class="nav-link" onmouseover="randomizePosition(this)" style="--rotate-degree: 2deg;">Contatti</a>
+            <a href="#" class="nav-link" onmouseover="randomizePosition(this)" style="font-weight: 900; transform: scale(1.2); --rotate-degree: -3deg;">FAQ</a>
+        </nav>
+        
+        <div class="search-container">
+            <h3>Cerca nelle FAQ <span class="moving-text">(Non funziona mai!)</span></h3>
+            <input type="text" class="search-input" id="faq-search" placeholder="Cerca una domanda..." onkeydown="searchKeyDown(event)">
+            <button class="search-button" onclick="searchFAQ()">Cerca</button>
+        </div>
+        
+        <div class="categories">
+            <button class="category-btn" onclick="filterCategory('generale')">Generale</button>
+            <button class="category-btn" onclick="filterCategory('tecnico')">Problemi Tecnici</button>
+            <button class="category-btn" onclick="filterCategory('account')">Account</button>
+            <button class="category-btn" onclick="filterCategory('servizi')">Servizi</button>
+            <button class="category-btn" onclick="filterCategory('tutti')" style="background-color: #ffff99;">Mostra Tutti</button>
+        </div>
+        
+        <div id="faq-loading">
+            <span class="dance-animation">C</span>
+            <span class="dance-animation">a</span>
+            <span class="dance-animation">r</span>
+            <span class="dance-animation">i</span>
+            <span class="dance-animation">c</span>
+            <span class="dance-animation">a</span>
+            <span class="dance-animation">m</span>
+            <span class="dance-animation">e</span>
+            <span class="dance-animation">n</span>
+            <span class="dance-animation">t</span>
+            <span class="dance-animation">o</span>
+            <span class="dance-animation">.</span>
+            <span class="dance-animation">.</span>
+            <span class="dance-animation">.</span>
+        </div>
+        
+        <div id="main-content">
+            <div class="popular-questions">
+                <h3>Domande Frequenti <span class="upside-down">(o forse no)</span></h3>
+                <a href="#faq1" class="popular-question-link" onclick="scrollToFAQ('faq1')">Perché il sito è così rotto?</a>
+                <a href="#faq2" class="popular-question-link" onclick="scrollToFAQ('faq2')">Come posso navigare questo sito?</a>
+                <a href="#faq3" class="popular-question-link" onclick="scrollToFAQ('faq3')">I cursori personalizzati sono necessari?</a>
+                <a href="#faq5" class="popular-question-link" onclick="scrollToFAQ('faq5')">Quanti cookie installate realmente?</a>
+            </div>
+            
+            <div class="faq-item" id="faq1" data-category="generale" style="--rotate-degree: -2deg;">
+                <div class="faq-question" onclick="toggleAnswer(this)">Perché il sito è così rotto?</div>
+                <div class="faq-answer">
+                    <p>Questa è la domanda che ci fanno più spesso! La risposta è semplice: <span class="glitch-text">perché possiamo!</span></p>
+                    <p>Il nostro obiettivo è creare l'esperienza di navigazione più frustrante possibile. Mentre tutti cercano di rendere i loro siti facili da usare, noi abbiamo deciso di andare nella direzione opposta.</p>
+                    <p>È un <span class="moving-text">esperimento artistico</span> che dimostra quanto possa essere terribile un'esperienza utente. Consideriamola una forma di anti-UX design.</p>
+                    <div>
+                        <span class="faq-tag">Filosofia</span>
+                        <span class="faq-tag">Design</span>
+                        <span class="faq-tag">Arte</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item" id="faq2" data-category="tecnico" style="--rotate-degree: 1.5deg;">
+                <div class="faq-question" onclick="toggleAnswer(this)">Come posso navigare questo sito?</div>
+                <div class="faq-answer">
+                    <p>La risposta breve è: <span class="rotating-text">con grande difficoltà!</span></p>
+                    <p>Alcuni suggerimenti per la navigazione (che probabilmente non funzioneranno):</p>
+                    <ul>
+                        <li>Prova a cliccare sui link velocemente prima che scappino</li>
+                        <li>Ignora il cursore personalizzato, segui quello reale</li>
+                        <li>Tieni premuto il tasto ESC mentre navighi (in realtà non aiuta)</li>
+                        <li>Sbatti la testa sulla tastiera ripetutamente (per alleviare la frustrazione)</li>
+                        <li>Chiudi gli occhi e spera per il meglio</li>
+                    </ul>
+                    <p>Se tutto fallisce, l'unico modo per vincere è non giocare!</p>
+                    <div>
+                        <span class="faq-tag">Navigazione</span>
+                        <span class="faq-tag">Aiuto</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item" id="faq3" data-category="tecnico" style="--rotate-degree: -1deg;">
+                <div class="faq-question" onclick="toggleAnswer(this)">I cursori personalizzati sono necessari?</div>
+                <div class="faq-answer">
+                    <p>Assolutamente <span class="blinking-text">no!</span> Ma questa è esattamente la ragione per cui li usiamo!</p>
+                    <p>I cursori personalizzati sono uno dei modi migliori per rendere un sito difficile da usare. Il nostro cursore personalizzato è progettato per:</p>
+                    <ul>
+                        <li>Essere enormemente fuori scala</li>
+                        <li>Seguire il cursore reale con un ritardo intenzionale</li>
+                        <li>A volte muoversi in una direzione completamente casuale</li>
+                        <li>Distrarti con animazioni mentre cerchi di cliccare su qualcosa</li>
+                    </ul>
+                    <p>Se non ti piace, puoi sempre disattivarlo! (Spoiler: non c'è nessuna opzione per disattivarlo)</p>
+                    <div>
+                        <span class="faq-tag">UI</span>
+                        <span class="faq-tag">Cursore</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item" id="faq4" data-category="servizi" style="--rotate-degree: 2deg;">
+                <div class="faq-question" onclick="toggleAnswer(this)">I vostri servizi sono realmente così terribili come sembrano?</div>
+                <div class="faq-answer">
+                    <p><span class="glitch-text">No, sono peggio!</span></p>
+                    <p>I nostri servizi sono progettati per superare le aspettative in termini di terribilità. Quando ordini uno dei nostri pacchetti, ti garantiamo:</p>
+                    <ol>
+                        <li>Una consegna in ritardo</li>
+                        <li>Funzionalità che non funzionano come previsto</li>
+                        <li>Design che violeranno ogni principio di usabilità</li>
+                        <li>Errori che appariranno in momenti critici</li>
+                        <li>Assistenza clienti completamente assente</li>
+                    </ol>
+                    <p>Se sei alla ricerca di soluzioni che funzionino, sei decisamente nel posto sbagliato!</p>
+                    <div>
+                        <span class="faq-tag">Servizi</span>
+                        <span class="faq-tag">Prodotti</span>
+                        <span class="faq-tag">Qualità</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item" id="faq5" data-category="generale" style="--rotate-degree: -1.5deg;">
+                <div class="faq-question" onclick="toggleAnswer(this)">Quanti cookie installate realmente?</div>
+                <div class="faq-answer">
+                    <p>Il numero esatto è... <span class="blinking-text">Infinito!</span></p>
+                    <p>In realtà, non abbiamo idea di quanti cookie installiamo. Il nostro generatore di cookie funziona a ciclo continuo, creando cookie per:</p>
+                    <ul>
+                        <li>Tracciare dove muovi il mouse</li>
+                        <li>Contare quante volte sbatti la testa sulla tastiera</li>
+                        <li>Misurare il livello di frustrazione in base alla velocità di clic</li>
+                        <li>Registrare le imprecazioni che dici mentre navighi</li>
+                        <li>Memorizzare il colore del tuo umore (sempre rosso quando visiti questo sito)</li>
+                    </ul>
+                    <p>La buona notizia? La maggior parte dei nostri cookie sono immaginari, proprio come la nostra politica sulla privacy!</p>
+                    <div>
+                        <span class="faq-tag">Cookie</span>
+                        <span class="faq-tag">Privacy</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item" id="faq6" data-category="account" style="--rotate-degree: 1deg;">
+                <div class="faq-question" onclick="toggleAnswer(this)">Come posso creare un account?</div>
+                <div class="faq-answer">
+                    <p>Creare un account sul nostro sito è <span class="moving-text">teoricamente possibile</span>, ma praticamente impossibile!</p>
+                    <p>Se vuoi davvero provare, ecco i passaggi:</p>
+                    <ol>
+                        <li>Clicca sul pulsante "Registrati" (che non esiste)</li>
+                        <li>Compila il modulo che continuerà a cancellare i tuoi dati casualmente</li>
+                        <li>Supera il CAPTCHA impossibile (indovina: non c'è risposta corretta)</li>
+                        <li>Attendi la mail di conferma che non arriverà mai</li>
+                        <li>Riprova dall'inizio, ripetendo il ciclo all'infinito</li>
+                    </ol>
+                    <p>Se miracolosamente riesci a creare un account, ti meriti un premio! (Il premio è più frustrazione)</p>
+                    <div>
+                        <span class="faq-tag">Account</span>
+                        <span class="faq-tag">Registrazione</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item" id="faq7" data-category="account" style="--rotate-degree: -2.5deg;">
+                <div class="faq-question" onclick="toggleAnswer(this)">Ho dimenticato la password, come la recupero?</div>
+                <div class="faq-answer">
+                    <p>Hai dimenticato la password? <span class="glitch-text">Fantastico!</span> Anche noi!</p>
+                    <p>Il nostro sistema di recupero password funziona così:</p>
+                    <ol>
+                        <li>Clicca su "Password dimenticata" (se riesci a trovarlo)</li>
+                        <li>Inserisci la tua email, e il sistema la ignorerà completamente</li>
+                        <li>Riceverai un link di reset che porta a una pagina 404</li>
+                        <li>Se per miracolo arrivi alla pagina di reset, il form invierà i dati nel vuoto</li>
+                        <li>La tua nuova password sarà generata ma non ti verrà mai comunicata</li>
+                    </ol>
+                    <p>In sintesi: crea un nuovo account e ricomincia il ciclo di frustrazione!</p>
+                    <div>
+                        <span class="faq-tag">Account</span>
+                        <span class="faq-tag">Password</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item" id="faq8" data-category="tecnico" style="--rotate-degree: 3deg;">
+                <div class="faq-question" onclick="toggleAnswer(this)">Il sito funziona su mobile?</div>
+                <div class="faq-answer">
+                    <p>La risposta breve è: <span class="rotating-text">No!</span></p>
+                    <p>La risposta lunga è: Nooooooooooooooo!</p>
+                    <p>Il nostro sito è progettato per non funzionare su:</p>
+                    <ul>
+                        <li>Smartphone Android</li>
+                        <li>iPhone</li>
+                        <li>Tablet</li>
+                        <li>Smart TV</li>
+                        <li>Orologi smart</li>
+                        <li>Computer desktop</li>
+                        <li>Computer portatili</li>
+                        <li>Praticamente qualsiasi dispositivo con uno schermo</li>
+                    </ul>
+                    <p>Se stai vedendo questa pagina su un dispositivo mobile, è solo perché il sito ha deciso casualmente di funzionare oggi. Goditi questo raro momento!</p>
+                    <div>
+                        <span class="faq-tag">Mobile</span>
+                        <span class="faq-tag">Compatibilità</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item" id="faq9" data-category="servizi" style="--rotate-degree: -1deg;">
+                <div class="faq-question" onclick="toggleAnswer(this)">Avete un programma di affiliazione?</div>
+                <div class="faq-answer">
+                    <p>Sì, abbiamo il programma di affiliazione più <span class="blinking-text">inutile</span> del web!</p>
+                    <p>Ecco come funziona:</p>
+                    <ol>
+                        <li>Ti registri al programma (vedi FAQ su come creare un account)</li>
+                        <li>Ricevi un link di affiliazione che non funziona</li>
+                        <li>Ogni visita attraverso il tuo link ti fa guadagnare 0,00001€</li>
+                        <li>La soglia minima per il pagamento è di 1.000.000€</li>
+                        <li>I pagamenti vengono elaborati il 30 febbraio di ogni anno</li>
+                    </ol>
+                    <p>In poche parole: è il metodo perfetto per lavorare tanto e non guadagnare nulla!</p>
+                    <div>
+                        <span class="faq-tag">Affiliazione</span>
+                        <span class="faq-tag">Guadagni</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item" id="faq10" data-category="generale" style="--rotate-degree: 2deg;">
+                <div class="faq-question" onclick="toggleAnswer(this)">Come contattare l'assistenza clienti?</div>
+                <div class="faq-answer">
+                    <p>L'assistenza clienti? <span class="glitch-text">Ahahahaha!</span></p>
+                    <p>Ecco le nostre opzioni di "assistenza":</p>
+                    <ul>
+                        <li>Email: supporto@sitorotto.it (tutte le email vengono automaticamente inviate al cestino)</li>
+                        <li>Telefono: +39 404 ERRORE (una segreteria telefonica che riproduce suoni di modem degli anni '90)</li>
+                        <li>Chat dal vivo: il nostro bot è programmato per dare risposte non correlate alle tue domande</li>
+                        <li>Piccioni viaggiatori: l'opzione più affidabile, ma devono essere forniti da te</li>
+                    </ul>
+                    <p>Il nostro tempo medio di risposta è "mai", e siamo molto orgogliosi di questo record!</p>
+                    <div>
+                        <span class="faq-tag">Assistenza</span>
+                        <span class="faq-tag">Contatti</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item" id="faq11" data-category="tecnico" style="--rotate-degree: -1.5deg;">
+                <div class="faq-question" onclick="toggleAnswer(this)">Perché i pulsanti scappano quando ci passo sopra?</div>
+                <div class="faq-answer">
+                    <p>I nostri pulsanti sono programmati con <span class="moving-text">intelligenza artificiale avanzata</span> per riconoscere quando stai per cliccarli e scappare!</p>
+                    <p>Questo comportamento è parte della nostra filosofia di design frustrante. I pulsanti che scappano offrono numerosi vantaggi:</p>
+                    <ul>
+                        <li>Migliorano la tua coordinazione occhio-mano attraverso tentativi ripetuti</li>
+                        <li>Ti insegnano la pazienza e la perseveranza</li>
+                        <li>Aumentano la tua frequenza cardiaca, sostituendo la necessità di esercizio fisico</li>
+                        <li>Ti fanno apprezzare i siti web normali (noiosi) quando li usi dopo il nostro</li>
+                    </ul>
+                    <p>Se vuoi davvero cliccare un pulsante, prova a fingere che non ti interessi e poi clicca rapidamente quando abbassa la guardia!</p>
+                    <div>
+                        <span class="faq-tag">Pulsanti</span>
+                        <span class="faq-tag">UI</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="faq-item" id="faq12" data-category="generale" style="--rotate-degree: 2.5deg;">
+                <div class="faq-question" onclick="toggleAnswer(this)">Il vostro sito è sicuro?</div>
+                <div class="faq-answer">
+                    <p>Possiamo garantire con assoluta certezza che il nostro sito è <span class="blinking-text">completamente</span> <span class="glitch-text">insicuro!</span></p>
+                    <p>La sicurezza è sopravvalutata, quindi abbiamo adottato un approccio rivoluzionario:</p>
+                    <ul>
+                        <li>Nessuna connessione HTTPS (a cosa serve, in fondo?)</li>
+                        <li>Le password vengono memorizzate in un file di testo pubblicamente accessibile</li>
+                        <li>Condividiamo volentieri tutti i dati con chiunque ce li chieda</li>
+                        <li>Utilizziamo "password123" come chiave di crittografia universale</li>
+                    </ul>
+                    <p>La buona notizia? Non abbiamo mai subito violazioni dei dati... perché non c'è nulla da violare!</p>
+                    <div>
+                        <span class="faq-tag">Sicurezza</span>
+                        <span class="faq-tag">Privacy</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="feedback-container">
+                <h3>Queste FAQ ti sono state utili?</h3>
+                <p>(Ogni risposta verrà completamente ignorata)</p>
+                <button class="feedback-button" onclick="giveFeedback(true)">Sì, molto utili</button>
+                <button class="feedback-button negative" onclick="giveFeedback(false)">No, per niente</button>
+                <div id="feedback-result" style="margin-top: 10px; display: none;"></div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 Sito Rotto S.p.A. - Tutte le FAQ sono deliberatamente inutili.</p>
+            <p>Ultimo aggiornamento: non aggiorniamo mai nulla!</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Inizializzazione pagina
+        window.onload = function() {
+            // Assegna rotazioni casuali
+            document.querySelectorAll('.faq-item').forEach(item => {
+                const randomRotate = (Math.random() * 6 - 3);
+                item.style.setProperty('--rotate-degree', `${randomRotate}deg`);
+            });
+            
+            // Mostra e nasconde il loader
+            document.getElementById('faq-loading').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('faq-loading').style.display = 'none';
+            }, 3000);
+            
+            // Crea popup casuale dopo un po'
+            setTimeout(() => {
+                createRandomPopup();
+            }, 15000);
+            
+            // Apre casualmete una FAQ
+            setTimeout(() => {
+                const faqItems = document.querySelectorAll('.faq-question');
+                const randomFaq = faqItems[Math.floor(Math.random() * faqItems.length)];
+                toggleAnswer(randomFaq);
+            }, 5000);
+            
+            // Inizializza scrolling casuale
+            initRandomScrolling();
+        };
+        
+        // Cursore personalizzato che segue il mouse con ritardo
+        document.addEventListener('mousemove', function(e) {
+            const cursor = document.querySelector('.custom-cursor');
+            // Ritardo intenzionale per rendere il cursore scomodo
+            setTimeout(() => {
+                // A volte il cursore scappa dal mouse
+                if (Math.random() > 0.7) {
+                    cursor.style.left = (e.pageX - 90 + Math.random() * 180 - 90) + 'px';
+                    cursor.style.top = (e.pageY - 90 + Math.random() * 180 - 90) + 'px';
+                } else {
+                    cursor.style.left = (e.pageX - 90) + 'px';
+                    cursor.style.top = (e.pageY - 90) + 'px';
+                }
+                cursor.style.transform = `scale(${Math.random() * 0.3 + 0.7}) rotate(${Math.random() * 90}deg)`;
+            }, 200);
+        });
+        
+        // Funzione per far scappare i pulsanti
+        function moveButton(btn) {
+            const maxX = window.innerWidth - 100;
+            const maxY = window.innerHeight - 100;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            btn.style.position = 'fixed';
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+            
+            // Lo rende più piccolo ogni volta
+            const currentScale = parseFloat(btn.style.transform?.match(/scale\(([^)]+)\)/) ? parseFloat(btn.style.transform.match(/scale\(([^)]+)\)/)[1]) : 1);
+            btn.style.transform = `scale(${currentScale * 0.8})`;
+            
+            // Dopo un po' lo rimette nella posizione originale
+            setTimeout(() => {
+                if (btn.classList.contains('escape-button')) {
+                    // Se è un pulsante di chiusura popup, lo lasciamo dov'è
+                    return;
+                }
+                btn.style.position = '';
+                btn.style.left = '';
+                btn.style.top = '';
+                btn.style.transform = '';
+            }, 10000);
+            
+            return false;
+        }
+        
+        // Randomizza posizione e aspetto dei link
+        function randomizePosition(link) {
+            link.style.transform = `rotate(${Math.random() * 360}deg) scale(${Math.random() + 0.5})`;
+            link.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        }
+        
+        // Funzione per i cookie
+        function acceptCookies() {
+            const cookieBanner = document.getElementById('cookie-banner');
+            cookieBanner.innerHTML = "Grazie! Ora hai 187.654 cookie! Ne aggiungiamo altri 2.000 ogni secondo!";
+            
+            // Inizia a contare i cookie
+            let cookieCount = 187654;
+            const cookieInterval = setInterval(() => {
+                cookieCount += 2000;
+                cookieBanner.innerHTML = `Cookie attivi: ${cookieCount}. Il tuo dispositivo sta per esplodere!`;
+                
+                // Aumenta gradualmente la dimensione del banner
+                cookieBanner.style.fontSize = (parseFloat(getComputedStyle(cookieBanner).fontSize) + 0.2) + 'px';
+                cookieBanner.style.padding = (parseFloat(getComputedStyle(cookieBanner).padding) + 0.5) + 'px';
+                
+            }, 1000);
+            
+            // Dopo un po' cambia il messaggio
+            setTimeout(() => {
+                clearInterval(cookieInterval);
+                cookieBanner.innerHTML = "⚠️ ERRORE FATALE: TROPPI COOKIE! RIAVVIA IMMEDIATAMENTE IL DISPOSITIVO! ⚠️";
+                cookieBanner.style.backgroundColor = "red";
+                cookieBanner.style.color = "white";
+                cookieBanner.style.fontWeight = "bold";
+                
+                // Fa vibrare il banner
+                cookieBanner.style.animation = "shake 0.2s infinite";
+            }, 10000);
+        }
+        
+        // Funzione per creare popup casuali
+        function createRandomPopup() {
+            if (Math.random() > 0.3) { // 70% di probabilità
+                const newPopup = document.createElement('div');
+                newPopup.className = 'popup';
+                newPopup.style.top = Math.random() * window.innerHeight + 'px';
+                newPopup.style.left = Math.random() * window.innerWidth + 'px';
+                newPopup.style.zIndex = 200 + Math.floor(Math.random() * 800);
+                
+                const messages = [
+                    "SONDAGGIO IMPORTANTE: Ti piacciono i popup? Chiudi questa finestra per dire SÌ!",
+                    "AVVISO: Questa FAQ potrebbe causare confusione permanente. Procedere a proprio rischio!",
+                    "NOVITÀ: Abbiamo appena aggiunto 58 nuove FAQ, ma non si possono visualizzare!",
+                    "STATISTICHE: L'87% degli utenti lascia il sito dopo 30 secondi. Resisti!",
+                    "FAQ SEGRETA SBLOCCATA: 'Come si chiude un popup?' (Risposta: Non si può!)",
+                    "COOKIES IN CORSO: Stiamo creando un cookie dedicato proprio a questo popup!"
+                ];
+                
+                newPopup.innerHTML = `
+                    ${messages[Math.floor(Math.random() * messages.length)]} 
+                    <button class="escape-button" onclick="moveButton(this)" style="top: ${Math.random() > 0.5 ? -10 : 10}px; ${Math.random() > 0.5 ? 'right' : 'left'}: ${Math.random() > 0.5 ? -10 : 10}px;">X</button>
+                `;
+                document.body.appendChild(newPopup);
+                
+                // Rimuovi dopo un po' per evitare di riempire troppo la pagina
+                setTimeout(() => {
+                    if (document.body.contains(newPopup)) {
+                        document.body.removeChild(newPopup);
+                    }
+                }, 15000);
+            }
+            
+            // Pianifica il prossimo popup
+            setTimeout(createRandomPopup, Math.random() * 30000 + 15000);
+        }
+        
+        // Funzione per gestire le FAQ
+        function toggleAnswer(question) {
+            const answer = question.nextElementSibling;
+            
+            // Ottieni lo stato attuale
+            const isVisible = answer.style.display === 'block';
+            
+            // 10% di probabilità di fare l'opposto di ciò che l'utente vuole
+            if (Math.random() > 0.9) {
+                // Non fare nulla, per frustrare l'utente
+                alert("Errore: impossibile caricare la risposta in questo momento!");
+                return;
+            }
+            
+            // Togli la classe active da tutte le domande
+            document.querySelectorAll('.faq-question').forEach(q => {
+                q.classList.remove('active');
+            });
+            
+            // Nascondi tutte le risposte
+            document.querySelectorAll('.faq-answer').forEach(a => {
+                a.style.display = 'none';
+            });
+            
+            // Se era nascosta, mostrala
+            if (!isVisible) {
+                answer.style.display = 'block';
+                question.classList.add('active');
+                
+                // Cambia casualmente il testo della risposta mentre l'utente la legge
+                setTimeout(() => {
+                    if (Math.random() > 0.7 && answer.style.display === 'block') {
+                        scrambleAnswerText(answer);
+                    }
+                }, 5000);
+            }
+        }
+        
+        // Funzione per mescolare il testo della risposta
+        function scrambleAnswerText(answer) {
+            const paragraphs = answer.querySelectorAll('p');
+            
+            // Seleziona un paragrafo casuale
+            if (paragraphs.length > 0) {
+                const randomParagraph = paragraphs[Math.floor(Math.random() * paragraphs.length)];
+                const originalText = randomParagraph.innerHTML;
+                
+                // Effetto glitch temporaneo
+                randomParagraph.style.animation = 'glitch 0.3s infinite';
+                
+                setTimeout(() => {
+                    randomParagraph.style.animation = '';
+                    
+                    // Messaggi divertenti da sostituire
+                    const funnyMessages = [
+                        "Questo testo è stato assorbito dal vuoto digitale!",
+                        "ERRORE 404: Paragrafo non trovato!",
+                        "Questo contenuto si è auto-distrutto per eccesso di logica!",
+                        "Il paragrafo è andato in pausa caffè, tornerà forse mai!",
+                        "Questo testo è migrato verso lidi più funzionali!"
+                    ];
+                    
+                    // Sostituisci con un messaggio casuale
+                    randomParagraph.innerHTML = funnyMessages[Math.floor(Math.random() * funnyMessages.length)];
+                    
+                    // Ripristina il testo originale dopo un po'
+                    setTimeout(() => {
+                        randomParagraph.innerHTML = originalText;
+                    }, 5000);
+                }, 500);
+            }
+        }
+        
+        // Funzione per filtrare per categoria
+        function filterCategory(category) {
+            // Prima mostriamo il loader
+            document.getElementById('faq-loading').style.display = 'block';
+            
+            // Nascondi tutte le risposte
+            document.querySelectorAll('.faq-answer').forEach(a => {
+                a.style.display = 'none';
+            });
+            
+            // Rimuovi la classe active da tutte le domande
+            document.querySelectorAll('.faq-question').forEach(q => {
+                q.classList.remove('active');
+            });
+            
+            setTimeout(() => {
+                // Nascondi prima tutti gli elementi
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.style.display = 'none';
+                });
+                
+                if (category === 'tutti') {
+                    // Mostra tutti gli elementi
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.style.display = 'block';
+                    });
+                } else {
+                    // Mostra solo gli elementi della categoria selezionata
+                    document.querySelectorAll(`.faq-item[data-category="${category}"]`).forEach(item => {
+                        item.style.display = 'block';
+                    });
+                }
+                
+                // A volte (20% delle volte) mostra comunque tutto
+                if (Math.random() > 0.8) {
+                    document.querySelectorAll('.faq-item').forEach(item => {
+                        item.style.display = 'block';
+                    });
+                    alert("Ops! Il filtro si è rotto e mostra tutte le FAQ!");
+                }
+                
+                // Nascondi il loader
+                document.getElementById('faq-loading').style.display = 'none';
+            }, 2000); // Ritardo intenzionale per frustrare l'utente
+        }
+        
+        // Funzione per la ricerca nelle FAQ
+        function searchFAQ() {
+            const searchInput = document.getElementById('faq-search');
+            const searchTerm = searchInput.value.trim().toLowerCase();
+            
+            // Se la ricerca è vuota
+            if (searchTerm === '') {
+                alert("Inserisci qualcosa per la ricerca... o non farlo, tanto non funziona!");
+                return;
+            }
+            
+            // Mostra il loader
+            document.getElementById('faq-loading').style.display = 'block';
+            
+            // Simula una ricerca
+            setTimeout(() => {
+                // Sempre 80% di probabilità che la ricerca "fallisca"
+                if (Math.random() > 0.2) {
+                    // Nascondi il loader
+                    document.getElementById('faq-loading').style.display = 'none';
+                    
+                    // Mostra un messaggio di errore
+                    const errorMessages = [
+                        "Errore di ricerca: Troppe FAQ trovate! Il server è confuso!",
+                        "Ricerca fallita: Abbiamo perso l'indice di ricerca tra i cookie!",
+                        "Impossibile cercare: Il motore di ricerca è in pausa pranzo!",
+                        "Nessun risultato? Forse. Risultati? Forse. Chi lo sa!",
+                        "La ricerca ha trovato troppi errori per mostrare risultati!"
+                    ];
+                    
+                    alert(errorMessages[Math.floor(Math.random() * errorMessages.length)]);
+                } else {
+                    // La ricerca "funziona" (mostra comunque risultati casuali)
+                    showSearchResults(searchTerm);
+                }
+            }, 3000); // Ritardo intenzionale
+        }
+        
+        // Funzione per mostrare i risultati della ricerca
+        function showSearchResults(searchTerm) {
+            // Nascondi il loader
+            document.getElementById('faq-loading').style.display = 'none';
+            
+            // Apri il popup di ricerca
+            document.getElementById('search-popup').style.display = 'flex';
+            
+            // Array di risultati divertenti casuali
+            const funnyResults = [
+                `"${searchTerm}" trovato in 404 FAQ nascoste!`,
+                `Risultato principale per "${searchTerm}": Prova a spegnere e riaccendere!`,
+                `Hai cercato "${searchTerm}"? Forse intendevi "come aggiustare un sito rotto"?`,
+                `"${searchTerm}" - Nessun risultato trovato, ma ti suggeriamo di cercare "aiuto"!`,
+                `La tua ricerca "${searchTerm}" ha causato un altro bug nel sistema!`
+            ];
+            
+            // Inserisci i risultati nel popup
+            const resultsContainer = document.getElementById('search-results');
+            resultsContainer.innerHTML = '';
+            
+            // Aggiungi 3-5 risultati casuali
+            const numResults = Math.floor(Math.random() * 3) + 3;
+            for (let i = 0; i < numResults; i++) {
+                const li = document.createElement('li');
+                li.textContent = funnyResults[Math.floor(Math.random() * funnyResults.length)];
+                resultsContainer.appendChild(li);
+            }
+            
+            // Aggiungi un ultimo risultato sempre presente
+            const lastLi = document.createElement('li');
+            lastLi.innerHTML = `<strong>Suggerimento:</strong> Per risultati migliori, prova a usare un altro sito!`;
+            resultsContainer.appendChild(lastLi);
+        }
+        
+        // Gestisce il tasto Invio nella casella di ricerca
+        function searchKeyDown(event) {
+            if (event.key === 'Enter') {
+                searchFAQ();
+            }
+        }
+        
+        // Funzione per gestire il feedback
+        function giveFeedback(isPositive) {
+            const feedbackResult = document.getElementById('feedback-result');
+            feedbackResult.style.display = 'block';
+            
+            // Sceglie casualmente una risposta indipendentemente dal feedback dato
+            const responses = [
+                "Grazie per il feedback! Lo ignoreremo completamente!",
+                "Il tuo feedback è stato inviato direttamente al cestino!",
+                "Feedback registrato! Non cambieremo assolutamente nulla!",
+                "Opinione notata e prontamente dimenticata!",
+                "Il tuo feedback è molto importante per noi... da ignorare!"
+            ];
+            
+            // Mostra una risposta casuale
+            feedbackResult.innerHTML = responses[Math.floor(Math.random() * responses.length)];
+            feedbackResult.style.color = Math.random() > 0.5 ? "green" : "red";
+            
+            // A volte apre anche il popup
+            if (Math.random() > 0.6) {
+                setTimeout(() => {
+                    document.getElementById('feedback-popup').style.display = 'flex';
+                }, 1000);
+            }
+        }
+        
+        // Funzione per chiudere i popup
+        function closePopup(popupId) {
+            const popup = document.getElementById(popupId);
+            
+            // 20% di probabilità che il popup non si chiuda
+            if (Math.random() > 0.8) {
+                alert("ERRORE: Impossibile chiudere il popup! Riprova!");
+            } else {
+                popup.style.display = 'none';
+            }
+        }
+        
+        // Funzione per scorrere a una FAQ
+        function scrollToFAQ(faqId) {
+            const faqElement = document.getElementById(faqId);
+            
+            // Mostra il loader
+            document.getElementById('faq-loading').style.display = 'block';
+            
+            // Ritardo intenzionale
+            setTimeout(() => {
+                // Nascondi il loader
+                document.getElementById('faq-loading').style.display = 'none';
+                
+                // 30% di probabilità di scrollare alla FAQ sbagliata
+                if (Math.random() > 0.7) {
+                    // Scegli una FAQ casuale diversa da quella richiesta
+                    const allFaqs = document.querySelectorAll('.faq-item');
+                    let randomFaq;
+                    do {
+                        randomFaq = allFaqs[Math.floor(Math.random() * allFaqs.length)];
+                    } while (randomFaq.id === faqId);
+                    
+                    // Scrolla alla FAQ casuale
+                    randomFaq.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // Apri la FAQ casuale
+                    const randomQuestion = randomFaq.querySelector('.faq-question');
+                    toggleAnswer(randomQuestion);
+                    
+                    // Avvisa l'utente
+                    setTimeout(() => {
+                        alert("Ops! Ti abbiamo portato alla FAQ sbagliata!");
+                    }, 1000);
+                } else {
+                    // Scrolla normalmente alla FAQ richiesta
+                    faqElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    
+                    // Apri la FAQ
+                    const question = faqElement.querySelector('.faq-question');
+                    toggleAnswer(question);
+                }
+            }, 2000);
+            
+            return false;
+        }
+        
+        // Inizializza scrolling casuale
+        function initRandomScrolling() {
+            setInterval(() => {
+                if (Math.random() > 0.9) { // 10% di probabilità
+                    window.scrollBy(
+                        Math.random() * 50 - 25, 
+                        Math.random() * 100 - 50
+                    );
+                }
+            }, 10000);
+        }
+        
+        // Pagina che ruota lentamente
+        let angle = 0;
+        setInterval(() => {
+            angle += 0.1;
+            if (angle > 2) {
+                angle = -2;
+            }
+            
+            // Oscilla tra -2 e 2 gradi
+            document.body.style.transform = `rotate(${angle}deg)`;
+        }, 200);
+        
+        // Funzione per gestire la chat
+        function toggleChat() {
+            const chatContainer = document.getElementById('chat-container');
+            if (chatContainer.style.display === 'flex') {
+                chatContainer.style.display = 'none';
+            } else {
+                chatContainer.style.display = 'flex';
+                
+                // Aggiungi un messaggio di benvenuto casuale se è la prima apertura
+                if (chatContainer.querySelector('#chat-messages').children.length === 1) {
+                    setTimeout(() => {
+                        addChatMessage("bot", "Ti serve aiuto? Sono qui per confonderti ulteriormente!");
+                    }, 1000);
+                }
+            }
+        }
+        
+        // Funzione per inviare un messaggio nella chat
+        function sendChatMessage() {
+            const chatInput = document.getElementById('chat-input');
+            const message = chatInput.value.trim();
+            
+            if (message === '') return;
+            
+            // Aggiungi il messaggio dell'utente alla chat
+            addChatMessage("user", message);
+            
+            // Pulisci l'input
+            chatInput.value = '';
+            
+            // Simula la digitazione del bot
+            const messagesContainer = document.getElementById('chat-messages');
+            const typingIndicator = document.createElement('div');
+            typingIndicator.style.backgroundColor = '#ffe6e6';
+            typingIndicator.style.padding = '10px';
+            typingIndicator.style.borderRadius = '10px';
+            typingIndicator.style.marginBottom = '10px';
+            typingIndicator.innerHTML = 'Sto scrivendo...';
+            messagesContainer.appendChild(typingIndicator);
+            
+            // Scrolla in fondo
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Risposte casuali non correlate
+            const randomResponses = [
+                "Non ho capito la tua domanda, ma non avrei risposto comunque!",
+                "Interessante... hai provato a spegnere e riaccendere?",
+                "La risposta è 42. Qualunque fosse la domanda.",
+                "Mi dispiace, ma il modulo di assistenza è temporaneamente in vacanza perpetua.",
+                "Hai considerato di abbandonare completamente e usare la carta e penna?",
+                "Il tuo messaggio è stato inviato al reparto 'Domande che non risponderemo mai'.",
+                "Secondo le mie analisi avanzate, il problema sei tu, non il sito!",
+                "Ho consultato la mia palla di cristallo e dice: 'Riprova mai'.",
+                "Sto elaborando la tua richiesta... Errore: elaborazione fallita con successo!",
+                "La tua domanda è stata aggiunta alla lista delle FAQ che nessuno leggerà mai."
+            ];
+            
+            // Dopo un ritardo casuale, mostra una risposta
+            setTimeout(() => {
+                // Rimuovi l'indicatore di digitazione
+                messagesContainer.removeChild(typingIndicator);
+                
+                // Aggiungi una risposta casuale
+                addChatMessage("bot", randomResponses[Math.floor(Math.random() * randomResponses.length)]);
+                
+                // 30% di probabilità di inviare un secondo messaggio
+                if (Math.random() > 0.7) {
+                    setTimeout(() => {
+                        addChatMessage("bot", "P.S. Hai provato a visitare la nostra pagina 'Chi Siamo'? È ancora più rotta di questa!");
+                    }, 1500);
+                }
+            }, Math.random() * 2000 + 1000);
+        }
+        
+        // Funzione per aggiungere un messaggio alla chat
+        function addChatMessage(sender, message) {
+            const messagesContainer = document.getElementById('chat-messages');
+            const messageElement = document.createElement('div');
+            
+            if (sender === "bot") {
+                messageElement.style.backgroundColor = '#ffe6e6';
+                messageElement.style.alignSelf = 'flex-start';
+            } else {
+                messageElement.style.backgroundColor = '#e6f2ff';
+                messageElement.style.alignSelf = 'flex-end';
+            }
+            
+            messageElement.style.padding = '10px';
+            messageElement.style.borderRadius = '10px';
+            messageElement.style.marginBottom = '10px';
+            messageElement.style.maxWidth = '80%';
+            
+            // A volte (10% delle volte) mescola il messaggio dell'utente
+            if (sender === "user" && Math.random() > 0.9) {
+                messageElement.textContent = message.split('').sort(() => Math.random() - 0.5).join('');
+            } else {
+                messageElement.textContent = message;
+            }
+            
+            messagesContainer.appendChild(messageElement);
+            
+            // Scrolla in fondo
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+        
+        // Rilevamento input nella casella di chat
+        document.getElementById('chat-input').addEventListener('keydown', function(event) {
+            if (event.key === 'Enter') {
+                sendChatMessage();
+            }
+        });
+    </script>
+</body>
+</html>

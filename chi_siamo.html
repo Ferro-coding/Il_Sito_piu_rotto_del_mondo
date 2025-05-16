@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi Siamo - Il Sito Più Rotto Del Mondo</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Comic Sans MS", cursive;
+            background: repeating-radial-gradient(circle, #ff0000, #ff7700, #ffff00, #00ff00, #0000ff, #ff00ff);
+            cursor: none;
+            overflow-x: hidden;
+            transform-origin: center;
+            animation: spin 120s infinite linear;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        * {
+            transition: all 0.5s ease;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: cyan;
+            text-shadow: 3px 3px 0 magenta, -3px -3px 0 yellow;
+            transform: rotate(3deg);
+            animation: shake 0.5s infinite;
+            writing-mode: vertical-rl;
+            text-orientation: upright;
+        }
+        
+        .custom-cursor {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background-image: url('/api/placeholder/150/150');
+            background-size: contain;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            filter: invert(1);
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.7);
+            border: 10px dashed greenyellow;
+            transform: skew(-8deg, 5deg);
+            position: relative;
+            animation: jitter 0.3s infinite;
+        }
+        
+        @keyframes jitter {
+            0% { transform: skew(-8deg, 5deg) translate(0, 0); }
+            25% { transform: skew(-8deg, 5deg) translate(2px, 1px); }
+            50% { transform: skew(-8deg, 5deg) translate(-1px, -2px); }
+            75% { transform: skew(-8deg, 5deg) translate(-3px, 0px); }
+            100% { transform: skew(-8deg, 5deg) translate(0, 0); }
+        }
+        
+        .popup {
+            position: fixed;
+            padding: 20px;
+            background-color: #ff00ff;
+            border: 5px solid yellow;
+            color: white;
+            z-index: 100;
+            box-shadow: 0 0 20px blue;
+            animation: move 3s infinite;
+            min-width: 200px;
+            min-height: 100px;
+        }
+        
+        .escape-button {
+            position: absolute;
+            padding: 10px;
+            background-color: green;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .nav-link {
+            display: inline-block;
+            margin: 10px;
+            padding: 5px 10px;
+            background-color: pink;
+            color: blue;
+            text-decoration: none;
+            font-weight: bold;
+            transform: rotate(random(-5, 5)deg);
+        }
+        
+        .nav-link:hover {
+            transform: scale(0.2) rotate(720deg);
+            opacity: 0.3;
+        }
+        
+        #main-content {
+            column-count: 5;
+            column-gap: 5px;
+            text-align: justify;
+            line-height: 1.8;
+            animation: colorChange 2s infinite;
+            font-size: 14px;
+        }
+        
+        @keyframes colorChange {
+            0% { color: red; }
+            25% { color: blue; }
+            50% { color: green; }
+            75% { color: purple; }
+            100% { color: red; }
+        }
+        
+        #team-member {
+            position: relative;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: rgba(255, 255, 0, 0.6);
+            border: 3px dotted blue;
+            text-align: center;
+        }
+        
+        .team-photo {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            animation: wobble 2s infinite;
+        }
+        
+        @keyframes wobble {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(5deg); }
+            50% { transform: scale(0.8) rotate(-5deg); }
+            75% { transform: scale(1.1) rotate(3deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+        
+        .mirror-text {
+            transform: scaleX(-1);
+        }
+        
+        .captcha-container {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #ffccff;
+            border: 2px solid #9900cc;
+            text-align: center;
+        }
+        
+        .split-text span {
+            display: inline-block;
+            transform-origin: center;
+        }
+        
+        footer {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: white;
+            text-align: center;
+            transform: rotate(-2deg);
+            animation: glitch 5s infinite;
+        }
+        
+        @keyframes glitch {
+            0% { transform: translate(0) rotate(-2deg); }
+            20% { transform: translate(-5px, 5px) rotate(-2deg); }
+            40% { transform: translate(5px, -5px) rotate(-2deg); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            60% { transform: translate(-5px, -5px) rotate(-2deg); clip-path: polygon(0 15%, 100% 0, 100% 85%, 0 100%); }
+            80% { transform: translate(5px, 5px) rotate(-2deg); clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
+            100% { transform: translate(0) rotate(-2deg); }
+        }
+        
+        .cookie-banner {
+            position: fixed;
+            bottom: 40px;
+            left: 20px;
+            right: 20px;
+            background-color: yellow;
+            padding: 15px;
+            text-align: center;
+            z-index: 1000;
+            border: 4px dashed red;
+        }
+        
+        /* Testo al contrario */
+        .reverse-text {
+            unicode-bidi: bidi-override;
+            direction: rtl;
+        }
+        
+        /* Effetto mascheramento */
+        .masked-text {
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            background-image: url('/api/placeholder/400/100');
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        #progress-check {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: rgba(255, 0, 255, 0.9);
+            padding: 20px;
+            z-index: 1000;
+            display: none;
+            border: 5px dotted yellow;
+            max-width: 80%;
+        }
+        
+        .quiz-option {
+            padding: 10px;
+            margin: 10px 0;
+            background-color: cyan;
+            cursor: pointer;
+        }
+        
+        #secret-button {
+            position: fixed;
+            width: 5px;
+            height: 5px;
+            background-color: transparent;
+            top: 10px;
+            left: 10px;
+            z-index: 9999;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="custom-cursor"></div>
+    
+    <button id="secret-button" onclick="unlockSecretSection()"></button>
+    
+    <div class="popup" id="popup1" style="top: 100px; left: 150px;">
+        ATTENZIONE! Per vedere questa pagina devi risolvere almeno 3 enigmi!
+        <button class="escape-button" style="top: -10px; right: -10px;" onclick="moveButton(this)">X</button>
+    </div>
+    
+    <div class="popup" id="popup2" style="top: 300px; left: 50px;">
+        SOLO OGGI! Scopri il nostro fantastico team cliccando qui!
+        <button class="escape-button" style="bottom: -10px; left: -10px;" onclick="startTeamQuiz()">CLICCA</button>
+    </div>
+    
+    <div class="cookie-banner" id="cookie-banner">
+        🍪 Abbiamo già installato 37.942 cookie ed è troppo tardi per dire di no!
+        <button onclick="updateCookieBanner()">Ho Capito</button>
+        <button onclick="moveButton(this)">Non Accetto</button>
+    </div>
+    
+    <div id="progress-check">
+        <h3>Quiz del Team Rotto</h3>
+        <div id="quiz-question">Quale di questi NON è membro del nostro team?</div>
+        <div class="quiz-option" onclick="wrongAnswer(this)">Professor Chaos</div>
+        <div class="quiz-option" onclick="wrongAnswer(this)">L'Ingegnere dell'Assurdo</div>
+        <div class="quiz-option" onclick="wrongAnswer(this)">Dottor Glitch</div>
+        <div class="quiz-option" onclick="correctAnswer()">Una Persona Normale</div>
+    </div>
+    
+    <div class="container">
+        <h1>Chi Siamo</h1>
+        
+        <nav>
+            <a href="index.html" class="nav-link" onmouseover="randomizePosition(this)">Home</a>
+            <a href="#" class="nav-link" onmouseover="randomizePosition(this)" style="font-weight: 900; transform: scale(1.2);">Chi Siamo</a>
+            <a href="servizi.html" class="nav-link" onmouseover="randomizePosition(this)">Servizi</a>
+            <a href="contatti.html" class="nav-link" onmouseover="randomizePosition(this)">Contatti</a>
+            <a href="faq.html" class="nav-link" onmouseover="randomizePosition(this)">FAQ</a>
+        </nav>
+        
+        <div id="main-content">
+            <p class="mirror-text">Benvenuti alla pagina "Chi Siamo", dove potrete scoprire i geni malvagi dietro al sito più rotto del web! Il nostro team è composto da esperti nel creare esperienze digitali frustranti e inutilmente complicate.</p>
+            
+            <p>La nostra storia inizia nel <span class="masked-text">2019</span> quando un gruppo di sviluppatori web <span class="reverse-text">stanchi di creare siti funzionali</span> hanno deciso di dedicare le loro competenze alla nobile causa di rendere internet un posto più caotico.</p>
+            
+            <div class="captcha-container">
+                <p>Prima di continuare, dimostra di essere umano completando questo CAPTCHA:</p>
+                <p>Clicca sul pulsante verde quando apparirà (apparirà per soli 0.3 secondi ogni 10 secondi)</p>
+                <div id="captcha-area" style="height: 100px; width: 100%; background: #ddd; position: relative;"></div>
+                <p id="captcha-status">In attesa...</p>
+            </div>
+            
+            <p class="split-text">La nostra <span>missione</span> <span>è</span> <span>di</span> <span>creare</span> <span>l'esperienza</span> <span>web</span> <span>più</span> <span>orribile</span> <span>possibile,</span> <span>garantendo</span> <span>che</span> <span>ogni</span> <span>click</span> <span>sia</span> <span>un'avventura</span> <span>nel</span> <span>caos.</span></p>
+        </div>
+        
+        <div id="team-members" style="display: none;">
+            <h2 style="transform: rotate(5deg); color: lime;">Il Nostro Fantastico Team</h2>
+            
+            <div id="team-member">
+                <img src="/api/placeholder/150/150" alt="Team Member" class="team-photo">
+                <h3>Professor Chaos</h3>
+                <p>Specialista in UI impossibili e menu che scappano</p>
+            </div>
+            
+            <div id="team-member">
+                <img src="/api/placeholder/150/150" alt="Team Member" class="team-photo">
+                <h3>L'Ingegnere dell'Assurdo</h3>
+                <p>Inventore del sistema di cursori multipli a movimento casuale</p>
+            </div>
+            
+            <div id="team-member">
+                <img src="/api/placeholder/150/150" alt="Team Member" class="team-photo">
+                <h3>Dottor Glitch</h3>
+                <p>PHP Master, specializzato in errori 404 casuali e database corrotti</p>
+            </div>
+            
+            <div id="secret-section" style="display: none; background-color: black; color: green; font-family: monospace; padding: 20px;">
+                <h3>SEZIONE SEGRETA SBLOCCATA!</h3>
+                <p>Complimenti! Hai trovato il pulsante segreto invisibile. Ecco alcuni segreti del nostro team:</p>
+                <ol>
+                    <li>In realtà scriviamo prima codice funzionale e poi lo roviniamo appositamente</li>
+                    <li>Abbiamo vinto il premio "Peggior UX dell'Anno" per 7 anni consecutivi</li>
+                    <li>Il nostro server principale gira su un Commodore 64 modificato</li>
+                </ol>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2025 Sito Rotto S.p.A. - Ci riserviamo il diritto di cambiare i termini di servizio mentre stai leggendo.</p>
+        </footer>
+    </div>
+    
+    <script>
+        // Inizializzazione pagina con caricamento estremamente lento
+        window.onload = function() {
+            document.body.style.opacity = 0.2;
+            let loadingProgress = 0.2;
+            const loadingInterval = setInterval(() => {
+                loadingProgress += 0.05;
+                document.body.style.opacity = loadingProgress;
+                if (loadingProgress >= 1) {
+                    clearInterval(loadingInterval);
+                    startCaptcha();
+                }
+            }, 1000);
+            
+            // Inizializza effetti testo
+            initTextEffects();
+        };
+        
+        // Cursore personalizzato che "riproduce" il movimento del mouse con ritardo
+        document.addEventListener('mousemove', function(e) {
+            const cursor = document.querySelector('.custom-cursor');
+            // Ritardo intenzionale per rendere il cursore scomodo
+            setTimeout(() => {
+                cursor.style.left = (e.pageX - 75) + 'px';
+                cursor.style.top = (e.pageY - 75) + 'px';
+                cursor.style.transform = `rotate(${Math.random() * 360}deg)`;
+            }, 300);
+        });
+        
+        // Funzione per far scappare i pulsanti
+        function moveButton(btn) {
+            const maxX = window.innerWidth - 100;
+            const maxY = window.innerHeight - 100;
+            const randomX = Math.floor(Math.random() * maxX);
+            const randomY = Math.floor(Math.random() * maxY);
+            
+            btn.style.position = 'fixed';
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+            
+            // Rendilo più piccolo dopo ogni click
+            const currentScale = parseFloat(btn.style.transform?.match(/scale\(([^)]+)\)/) ? parseFloat(btn.style.transform.match(/scale\(([^)]+)\)/)[1]) : 1);
+            btn.style.transform = `scale(${currentScale * 0.8})`;
+            
+            return false;
+        }
+        
+        // Funzione per i cookie
+        function updateCookieBanner() {
+            const cookieBanner = document.getElementById('cookie-banner');
+            let count = 37942;
+            cookieBanner.innerHTML = `Grazie! Ora ci sono ${count} cookie sul tuo dispositivo. Ne installiamo altri 1000 ogni secondo!`;
+            
+            const cookieInterval = setInterval(() => {
+                count += 1000;
+                cookieBanner.innerHTML = `Grazie! Ora ci sono ${count} cookie sul tuo dispositivo. Ne installiamo altri 1000 ogni secondo!`;
+                cookieBanner.style.fontSize = (parseFloat(getComputedStyle(cookieBanner).fontSize) + 0.5) + 'px';
+            }, 1000);
+            
+            // Ferma dopo un po' per non bloccare tutto
+            setTimeout(() => {
+                clearInterval(cookieInterval);
+                cookieBanner.innerHTML = "ERRORE: SPAZIO ARCHIVIAZIONE COOKIE ESAURITO!";
+                cookieBanner.style.backgroundColor = "red";
+            }, 10000);
+        }
+        
+        // Randomizza posizione e aspetto dei link
+        function randomizePosition(link) {
+            link.style.transform = `rotate(${Math.random() * 360}deg) scale(${Math.random() + 0.5})`;
+            link.style.backgroundColor = `hsl(${Math.random() * 360}, 100%, 70%)`;
+        }
+        
+        // Sistema CAPTCHA impossibile
+        function startCaptcha() {
+            const captchaArea = document.getElementById('captcha-area');
+            const captchaStatus = document.getElementById('captcha-status');
+            let captchaSolved = false;
+            
+            // Crea un pulsante che appare raramente e per pochissimo tempo
+            const captchaInterval = setInterval(() => {
+                if (captchaSolved) {
+                    clearInterval(captchaInterval);
+                    return;
+                }
+                
+                const button = document.createElement('button');
+                button.style.position = 'absolute';
+                button.style.width = '30px';
+                button.style.height = '30px';
+                button.style.backgroundColor = 'green';
+                button.style.border = 'none';
+                button.style.borderRadius = '50%';
+                button.style.left = Math.random() * (captchaArea.offsetWidth - 30) + 'px';
+                button.style.top = Math.random() * (captchaArea.offsetHeight - 30) + 'px';
+                
+                button.onclick = function() {
+                    captchaSolved = true;
+                    captchaStatus.textContent = "CAPTCHA completato! Ora puoi continuare a leggere.";
+                    captchaStatus.style.color = "green";
+                    captchaArea.style.backgroundColor = "#dfd";
+                    
+                    // Rivela il contenuto nascosto
+                    document.getElementById('main-content').style.filter = "none";
+                    
+                    // Rimuovi il pulsante
+                    captchaArea.removeChild(button);
+                };
+                
+                captchaArea.appendChild(button);
+                
+                // Rimuovi il pulsante dopo 300ms
+                setTimeout(() => {
+                    if (captchaArea.contains(button)) {
+                        captchaArea.removeChild(button);
+                    }
+                }, 300);
+                
+            }, 10000); // Appare ogni 10 secondi
+            
+            // Offusca il contenuto fino a completamento CAPTCHA
+            document.getElementById('main-content').style.filter = "blur(5px)";
+            captchaStatus.textContent = "In attesa del completamento CAPTCHA...";
+        }
+        
+        // Effetti di testo
+        function initTextEffects() {
+            // Split text animation
+            const splitTextElements = document.querySelectorAll('.split-text');
+            splitTextElements.forEach(element => {
+                const spans = element.querySelectorAll('span');
+                spans.forEach(span => {
+                    setInterval(() => {
+                        span.style.transform = `rotate(${Math.random() * 20 - 10}deg) scale(${Math.random() * 0.5 + 0.8})`;
+                        span.style.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+                    }, 2000 + Math.random() * 3000);
+                });
+            });
+        }
+        
+        // Quiz del team
+        function startTeamQuiz() {
+            document.getElementById('progress-check').style.display = 'block';
+        }
+        
+        function wrongAnswer(element) {
+            element.style.backgroundColor = "red";
+            // Clona il popup quiz e lo sposta in una posizione casuale
+            const quizElement = document.getElementById('progress-check');
+            const cloned = quizElement.cloneNode(true);
+            cloned.style.top = Math.random() * 80 + 10 + '%';
+            cloned.style.left = Math.random() * 80 + 10 + '%';
+            document.body.appendChild(cloned);
+            
+            // Messaggio di errore
+            alert("RISPOSTA SBAGLIATA! Ora hai ancora più quiz da completare!");
+        }
+        
+        function correctAnswer() {
+            // Rimuovi tutti i cloni del quiz
+            const quizElements = document.querySelectorAll('#progress-check');
+            quizElements.forEach(element => {
+                element.style.display = 'none';
+            });
+            
+            // Mostra il team
+            document.getElementById('team-members').style.display = 'block';
+            
+            alert("Risposta corretta! Ora puoi vedere il nostro fantastico team!");
+        }
+        
+        // Funzione per sbloccare la sezione segreta
+        function unlockSecretSection() {
+            document.getElementById('secret-section').style.display = 'block';
+            alert("HAI TROVATO IL PULSANTE SEGRETO INVISIBILE!");
+        }
+        
+        // Crea popup casuali e fastidiosi
+        setInterval(() => {
+            if (Math.random() > 0.7) { // 30% di probabilità ogni 20 secondi
+                const newPopup = document.createElement('div');
+                newPopup.className = 'popup';
+                newPopup.style.top = Math.random() * window.innerHeight + 'px';
+                newPopup.style.left = Math.random() * window.innerWidth + 'px';
+                
+                const messages = [
+                    "HAI VINTO UN IPHONE (del 2007)!!!",
+                    "ATTENZIONE: Il tuo computer potrebbe essere a rischio!",
+                    "Ultime 3 copie disponibili del nostro e-book 'Come Creare Siti Rotti'!",
+                    "Sondaggio: Ti piace questo sito? (Risposta corretta: SI)"
+                ];
+                
+                newPopup.innerHTML = `
+                    ${messages[Math.floor(Math.random() * messages.length)]} 
+                    <button class="escape-button" onclick="moveButton(this)">X</button>
+                `;
+                document.body.appendChild(newPopup);
+                
+                // Rimuovi dopo un po' per evitare di riempire troppo la pagina
+                setTimeout(() => {
+                    document.body.removeChild(newPopup);
+                }, 15000);
+            }
+        }, 20000);
+        
+        // Fai oscillare il testo
+        const originalContent = document.getElementById('main-content').innerHTML;
+        setInterval(() => {
+            // 10% di probabilità di scrambling temporaneo
+            if (Math.random() > 0.9) {
+                document.getElementById('main-content').innerHTML = scrambleText(originalContent);
+                
+                // Ripristina dopo 2 secondi
+                setTimeout(() => {
+                    document.getElementById('main-content').innerHTML = originalContent;
+                    initTextEffects();
+                }, 2000);
+            }
+        }, 10000);
+        
+        function scrambleText(text) {
+            return text.split(' ').map(word => {
+                // 50% di probabilità di scrambling della parola
+                if (Math.random() > 0.5 && word.length > 3) {
+                    const chars = word.split('');
+                    for (let i = 0; i < chars.length - 1; i++) {
+                        const j = Math.floor(Math.random() * (chars.length - 1)) + 1;
+                        [chars[i], chars[j]] = [chars[j], chars[i]];
+                    }
+                    return chars.join('');
+                }
+                return word;
+            }).join(' ');
+        }
+        
+        // Pagina che ruota lentamente e con movimento casuale
+        let angle = 0;
+        setInterval(() => {
+            angle += 0.2;
+            if (angle > 8) {
+                angle = -8;
+            }
+            document.body.style.transform = `rotate(${angle}deg)`;
+            
+            // Movimento casuale della pagina
+            document.body.style.marginTop = Math.random() * 10 - 5 + 'px';
+            document.body.style.marginLeft = Math.random() * 10 - 5 + 'px';
+        }, 500);
+        
+        // Fa scorrere la pagina casualmente
+        setInterval(() => {
+            if (Math.random() > 0.7) { // 30% di probabilità
+                window.scrollBy(
+                    Math.random() * 100 - 50, 
+                    Math.random() * 100 - 50
+                );
+            }
+        }, 8000);
+    </script>
+</body>
+</html>
